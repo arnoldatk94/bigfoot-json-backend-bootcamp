@@ -3,33 +3,25 @@ const { getSightings } = require("../utils");
 class SightingsController {
   constructor() {}
 
-  homepage = (req, res) => {
-    res.send("Hello World");
-  };
-
-  //   app.get("/", (req, res) => {
-  //   res.send("Hello World");
-  // });
-
   getAllSightings = async (req, res) => {
     const sightings = await getSightings();
     res.json(sightings);
   };
-
-  // app.get("/sightings", async (req, res) => {
-  //   const sightings = await getSightings();
-  //   res.json(sightings);
-  // });
 
   getSighting = async (req, res) => {
     const sightings = await getSightings();
     res.json(sightings[req.params.sightingIndex]);
   };
 
-  // app.get("/sightings/:sightingIndex", async (req, res) => {
-  //   const sightings = await getSightings();
-  //   res.json(sightings[req.params.sightingIndex]);
-  // });
+  listByFilter = async (req, res) => {
+    const sightings = await getSightings();
+    const filterParam = req.params.year;
+    const key = "YEAR";
+    const filteredSightingsList = sightings.filter(
+      (item) => item[key] == filterParam
+    );
+    res.json(filteredSightingsList);
+  };
 }
 
 module.exports = SightingsController;

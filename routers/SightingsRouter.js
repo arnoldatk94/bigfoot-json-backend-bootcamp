@@ -7,9 +7,9 @@ class SightingsRouter {
   routes = () => {
     const router = this.express.Router();
 
-    router.get("/", this.controller.homepage);
-    router.get("/sightings", this.controller.getAllSightings);
-    router.get("/sightings/:sightingIndex", this.controller.getSighting);
+    router.get("/", this.controller.getAllSightings);
+    router.get("/:sightingIndex", this.controller.getSighting);
+    router.get("/filter/:year", this.controller.listByFilter);
 
     return router;
   };

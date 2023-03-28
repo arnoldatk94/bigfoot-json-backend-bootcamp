@@ -16,21 +16,7 @@ const SightingsRouter = require("./routers/SightingsRouter");
 const sightingsController = new SightingsController();
 const sightingsRouter = new SightingsRouter(express, sightingsController);
 
-app.use("/", sightingsRouter.routes());
-
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
-
-// app.get("/sightings", async (req, res) => {
-//   const sightings = await getSightings();
-//   res.json(sightings);
-// });
-
-// app.get("/sightings/:sightingIndex", async (req, res) => {
-//   const sightings = await getSightings();
-//   res.json(sightings[req.params.sightingIndex]);
-// });
+app.use("/sightings", sightingsRouter.routes());
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
